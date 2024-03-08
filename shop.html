@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="index.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <div id="navbar">
+    <p>Shop</p>
+    <ul class="menu">
+      <li><a class="menuItem" href="">Home</a></li>
+      <li><a class="menuItem" href="shop.html">Shop</a></li>
+      <li><a class="menuItem" href="muffiny.html">Muffiny</a></li>
+      <li><a class="menuItem" href="tacos.html">Tacos</a></li>
+      <li><a class="menuItem" href="smotanovaTorta.html">Smotanová torta</a></li>
+      <li><a class="menuItem" href="syrovyToust.html">Syrový toust</a></li>
+      <li><a class="menuItem" href="segedin.html">Segedín</a></li>
+    </ul>
+    <button class="hamburger">
+      <i class="menuIcon material-icons">menu</i>
+      <i class="closeIcon material-icons">close</i>
+    </button>
+  </div>
+  <div id="main">
+
+    <button onclick="formular()">Kúpiť</button>
+    <form class="hidden" id="Formular"
+      style="position: absolute; top: 50%; left: 60%; transform: translate(-50%, -50%);">
+      <label for="gender">Pohlavie:</label><br>
+      <input type="radio" id="male" name="gender" value="male">
+      <label for="male">Muž</label>
+      <input type="radio" id="female" name="gender" value="female">
+      <label for="female">Žena</label><br>
+      <label for="firstName">Meno:</label><br>
+      <input type="text" id="firstName" name="firstName"><br>
+      <label for="lastName">Priezvisko:</label><br>
+      <input type="text" id="lastName" name="lastName"><br><br>
+      <input type="tel" id="phone" name="phone" placeholder="Mobilné číslo" pattern="[0-9]{9,15}"
+        title="Zadajte platné telefónne číslo (9-15 číslic)"><br>
+      <input type="email" id="email" name="email" placeholder="Emailová adresa" pattern="[^@]+@[^\.]+\..+"><br><br>
+      <input type="submit" value="Odoslať">
+    </form>
+  </div>
+
+  <div id="footer">
+    <p>Copyright © Recepty pre lenivé maminy </p>
+  </div>
+
+  <script>
+    const menu = document.querySelector(".menu");
+    const menuItems = document.querySelectorAll(".menuItem");
+    const hamburger = document.querySelector(".hamburger");
+    const closeIcon = document.querySelector(".closeIcon");
+    const menuIcon = document.querySelector(".menuIcon");
+
+    function toggleMenu() {
+      if (menu.classList.contains("showMenu")) {
+        menu.classList.remove("showMenu");
+        closeIcon.style.display = "none";
+        menuIcon.style.display = "block";
+      } else {
+        menu.classList.add("showMenu");
+        closeIcon.style.display = "block";
+        menuIcon.style.display = "none";
+      }
+    }
+
+    hamburger.addEventListener("click", toggleMenu);
+
+    menuItems.forEach(
+      function (menuItem) {
+        menuItem.addEventListener("click", toggleMenu);
+      }
+    )
+  </script>
+  <script>
+    function formular() {
+      var form = document.querySelector("form");
+      form.classList.remove("hidden");
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="index.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <div id="navbar">
+    <p>Recepty pre lenivé maminy</p>
+    <ul class="menu">
+      <li><a class="menuItem" href="">Home</a></li>
+      <li><a class="menuItem" href="shop.html">Shop</a></li>
+      <li><a class="menuItem" href="muffiny.html">Muffiny</a></li>
+      <li><a class="menuItem" href="tacos.html">Tacos</a></li>
+      <li><a class="menuItem" href="smotanovaTorta.html">Smotanová torta</a></li>
+      <li><a class="menuItem" href="syrovyToust.html">Syrový toust</a></li>
+      <li><a class="menuItem" href="segedin.html">Segedín</a></li>
+    </ul>
+    <button class="hamburger">
+      <i class="menuIcon material-icons">menu</i>
+      <i class="closeIcon material-icons">close</i>
+    </button>
+  </div>
+  <div id="main">
+    <p>Loading data</p>
+  </div>
+  <div id="footer">
+    <p>Copyright © Recepty pre lenivé maminy </p>
+  </div>
+  <script>
+    //ziska data z takeho linku -- kuzelne
+    fetch('https://api.npoint.io/bd1cee04be2498f013e4')
+      .then(response => response.json())
+      .then(data => {
+        const mainDiv = document.getElementById('main');
+        mainDiv.innerHTML = `
+          <div class="recept">
+            <h1>${data.nazov}</h1>
+            <p>${data.recept}</p>
+          </div>
+        `;
+      });
+  </script>
+  <script>
+    const menu = document.querySelector(".menu");
+    const menuItems = document.querySelectorAll(".menuItem");
+    const hamburger = document.querySelector(".hamburger");
+    const closeIcon = document.querySelector(".closeIcon");
+    const menuIcon = document.querySelector(".menuIcon");
+
+    function toggleMenu() {
+      if (menu.classList.contains("showMenu")) {
+        menu.classList.remove("showMenu");
+        closeIcon.style.display = "none";
+        menuIcon.style.display = "block";
+      } else {
+        menu.classList.add("showMenu");
+        closeIcon.style.display = "block";
+        menuIcon.style.display = "none";
+      }
+    }
+
+    hamburger.addEventListener("click", toggleMenu);
+
+    menuItems.forEach(
+      function (menuItem) {
+        menuItem.addEventListener("click", toggleMenu);
+      }
+    );
+  </script>
+
+</body>
+
+</html>
